@@ -13,21 +13,21 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest(HelloWorldController.class)
-public class HelloWorldControllerTest {
+@WebMvcTest(ItemController.class)
+public class ItemControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
 
     @Test
-    public void helloWorldBasic() throws Exception {
+    public void dummyItemBasic() throws Exception {
         RequestBuilder request = MockMvcRequestBuilders
-                .get("/hello-world")
+                .get("/dummy-item")
                 .accept(MediaType.APPLICATION_JSON);
         MvcResult result = mockMvc.perform(request)
                 .andExpect(status().isOk())
-                .andExpect(content().string("Hello World"))
+                .andExpect(content().string("{\"id\":1,\"name\":\"Ball\",\"price\":10,\"quantity\":100}"))
                 .andReturn();
-        Assertions.assertEquals("Hello World", result.getResponse().getContentAsString());
+        Assertions.assertEquals("{\"id\":1,\"name\":\"Ball\",\"price\":10,\"quantity\":100}", result.getResponse().getContentAsString());
     }
 }
