@@ -2,6 +2,7 @@ package com.in28minutes.unittesting.unittesting.controller;
 
 import com.in28minutes.unittesting.unittesting.business.ItemBusinessService;
 import com.in28minutes.unittesting.unittesting.model.Item;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -34,7 +35,13 @@ public class ItemControllerTest {
                 .accept(MediaType.APPLICATION_JSON);
         MvcResult result = mockMvc.perform(request)
                 .andExpect(status().isOk())
-                .andExpect(content().string("{\"id\":1,\"name\":\"Ball\",\"price\":10,\"quantity\":100}"))
+                .andExpect(content().string("{\n" +
+                        "  \"id\" : 1,\n" +
+                        "  \"name\" : \"Ball\",\n" +
+                        "  \"price\" : 10,\n" +
+                        "  \"quantity\" : 100,\n" +
+                        "  \"value\" : 0\n" +
+                        "}"))
                 .andReturn();
 //        Assertions.assertEquals("{\"id\":1,\"name\":\"Ball\",\"price\":10,\"quantity\":100}", result.getResponse().getContentAsString());
     }
