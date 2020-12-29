@@ -24,7 +24,7 @@ public class ItemBusinessServiceTest {
     private ItemRepository itemRepository;
 
     @Test
-    public void calculateSumUsingDataServiceBasic() {
+    public void retrieveAllItemsBasic() {
         when(itemRepository.findAll()).thenReturn(Arrays.asList(new Item(2, "Item2", 10, 10),
                 new Item(3, "Item3", 20, 20)));
         List<Item> items = itemBusinessService.retrieveAllItems();
